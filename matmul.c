@@ -1,5 +1,6 @@
 #include <omp.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #define N 700
 #define THREADS 2
@@ -7,7 +8,16 @@ int main(int argc, char **argv)
 {
     int i, j, k;
     double sum = 0.0;
-    double a[N][N], b[N][N], c[N][N];
+    
+    // Allocate matrices on heap instead of stack to avoid segmentation fault
+    double (*a)[N] = malloc(N * N * sizeof(double));
+    double (*b)[N] = malloc(N * N * sizeof(double));
+    double (*c)[N] = malloc(N * N * sizeof(double));
+    
+    if (a == NULL || b == NULL || c == NULL) {
+        fprintf(stderr, "Memory allocation failed!\n");
+        return 1;
+    }
     /* Init */
     for (i = 0; i < N; ++i)
     {
@@ -41,5 +51,11 @@ int main(int argc, char **argv)
         }
     }
     printf("Result: %f\n", sum);
+    
+    // Free allocated memory
+    free(a);
+    free(b);
+    free(c);
+    
     return 0;
 }

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 ####### Mail Notify / Job Name / Comment #######
-#SBATCH --job-name="matmul"
+#SBATCH --job-name="karan patel - matmul"
 
 ####### Partition #######
 #SBATCH --partition=all
@@ -13,8 +13,8 @@
 #SBATCH --nodes=1
 
 ####### Output #######
-#SBATCH --output=/path/to/your/home/out/matmul.out.%j
-#SBATCH --error=/path/to/your/home/out/matmul.err.%j
+#SBATCH --output=/home/fd0003348/out/matmul.out.%j
+#SBATCH --error=/home/fd0003348/out/matmul.err.%j
 
 export OMP_NUM_THREADS=4
 #cd /path/to/bin
