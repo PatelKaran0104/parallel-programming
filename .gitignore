@@ -1,0 +1,96 @@
+# Compiled executables
+*.exe
+*.out
+*.app
+*.o
+*.obj
+
+# Build directories
+build/
+bin/
+obj/
+
+# SSH keys and credentials (IMPORTANT - never commit these!)
+hpc
+hpc.pub
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+*.pem
+*.key
+
+# VS Code settings (optional - uncomment if you want to ignore)
+# .vscode/
+
+# Compiled Object files
+*.slo
+*.lo
+*.ko
+*.elf
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Fortran module files
+*.mod
+*.smod
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+.*.swp
+
+# Log files
+*.log
+
+# Core dumps
+core
+core.*
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile.bak
+
+# Job submission outputs (HPC cluster)
+*.o[0-9]*
+*.e[0-9]*
+slurm-*.out
+*.sbatch.out
