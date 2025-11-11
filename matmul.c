@@ -31,6 +31,7 @@ int main(int argc, char **argv)
     omp_set_num_threads(THREADS);
     
     /* Matrixmultiplication with parallal for-loop*/
+    double start = omp_get_wtick();
 #pragma omp parallel for shared(a, b, c) private(i, j, k) schedule(static)
     for (i = 0; i < N; ++i)
     {
@@ -42,7 +43,8 @@ int main(int argc, char **argv)
             }
         }
     }
-
+    double end = omp_get_wtime();
+    printf("Time taken for matrix multiplication with %d threads: %f seconds\n", THREADS, end - start);
     for (i = 0; i < N; ++i)
     {
         for (j = 0; j < N; ++j)

@@ -16,6 +16,6 @@
 #SBATCH --output=/home/fd0003348/out/matmul.out.%j
 #SBATCH --error=/home/fd0003348/out/matmul.err.%j
 
-export OMP_NUM_THREADS=4
+export OMP_NUM_THREADS=8
 #cd /path/to/bin
 ./matmul
