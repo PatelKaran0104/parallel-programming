@@ -1,42 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
+#include <omp.h>
 
-int main(int argc, char **argv)
+static long num_steps = 1000000;
+double step;
+
+int main()
 {
-    clock_t start = clock();
-    int iterations = 0;
-    if (argc < 2)
+    int i;
+    double x, pi, sum = 0.0;
+    step = 1.0 / (double)num_steps;
+    double start_time = omp_get_wtime();
+    #pragma omp parallel for reduction(+:sum) private(x)
+    for (i = 0; i < num_steps; i++)
     {
-        printf("The number of iterations was not provided.");
-        return 1;
+        x = (i + 0.5) * step;
+        sum = sum + 4.0 / (1.0 + x * x);
     }
-    else
-    {
-        iterations = atoi(argv[1]);
-        printf("hey the val is : %d\n", iterations);
-    }
-    double pi = 0.0;
-
-    for (int i = 0; i < iterations; i++)
-    {
-        double term = 1.0 / (2 * i + 1);
-        if (i % 2 == 0)
-        {
-            pi += term;
-        }
-        else
-        {
-            pi -= term;
-        }
-    }
-
-    pi *= 4.0;
-    clock_t end = clock();
-    double time_spent = (double)(end - start) / CLOCKS_PER_SEC;
-    printf("Leibniz formula approximation of pi after %d iterations:\n", iterations);
-    printf("π = %.15f\n", pi);
-    printf("Time taken: %.6f seconds\n", time_spent);
-
+    pi = step * sum;
+    printf(" Approximation of Pi : %.10f\n", pi);
+    printf(" Time taken: %f seconds\n", omp_get_wtime() - start_time);
     return 0;
 }

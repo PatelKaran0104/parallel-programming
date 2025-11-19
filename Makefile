@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-fopenmp -O2 -lgomp
-EXE=matmul
-SRCS=matmul.c
+EXE=pi
+SRCS=pi.c
 
 all:
 	$(CC) $(CFLAGS) $(SRCS) -o $(EXE).exe
