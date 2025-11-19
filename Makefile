@@ -1,13 +1,14 @@
 CC=gcc
-CFLAGS=-fopenmp -O2 -lgomp
-EXE=pi
-SRCS=pi.c
+CFLAGS=-fopenmp -O2
+LDFLAGS=-lgomp
+EXE=blockpi
+SRCS=blockpi.c
 
 all:
-	$(CC) $(CFLAGS) $(SRCS) -o $(EXE).exe
+	$(CC) $(CFLAGS) $(SRCS) -o $(EXE) $(LDFLAGS)
 
 run:
-	.\$(EXE).exe
+	./$(EXE)
 
 clean:
-	-@del $(EXE).exe 2>nul || echo File not found
+	rm -f $(EXE)
