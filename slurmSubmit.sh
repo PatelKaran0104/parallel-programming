@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 ####### Mail Notify / Job Name / Comment #######
-#SBATCH --job-name="karan patel - pi"
+#SBATCH --job-name="karan patel - piWithReduction"
 
 ####### Partition #######
 #SBATCH --partition=all
@@ -13,11 +13,18 @@
 #SBATCH --nodes=1
 
 ####### Output #######
-#SBATCH --output=/home/fd0003348/out/blockpi.out.%j
-#SBATCH --error=/home/fd0003348/out/blockpi.err.%j
+#SBATCH --output=/home/fd0003348/out/piWithReduction.out.%j
+#SBATCH --error=/home/fd0003348/out/piWithReduction.err.%j
 
 export OMP_NUM_THREADS=8
 #cd /path/to/bin
-for i in {1..10}; do
-    time ./blockpi
+sum=0
+
+for i in {1..20}; do
+    t=$(./piWithReduction)
+    echo "Run $i: $t"
+    sum=$(echo "$sum + $t" | bc -l)
 done
+
+avg=$(echo "$sum / 20" | bc -l)
+echo "Average: $avg"

@@ -1,8 +1,8 @@
 CC=gcc
 CFLAGS=-fopenmp -O2
 LDFLAGS=-lgomp
-EXE=blockpi
-SRCS=blockpi.c
+EXE=piWithReduction
+SRCS=piWithReduction.c
 
 all:
 	$(CC) $(CFLAGS) $(SRCS) -o $(EXE) $(LDFLAGS)
